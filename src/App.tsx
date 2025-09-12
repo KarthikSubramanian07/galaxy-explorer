@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 import GalaxyCard from "./components/GalaxyCard";
 import "./styles.css";
 
@@ -76,13 +77,39 @@ const galaxies = [
 ];
 
 const App: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredGalaxies = galaxies.filter(
+    (galaxy) =>
+      galaxy.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      galaxy.type.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div>
-      <h1>Galaxy Explorer - Demo</h1>
+      <h1>Galaxy Explorer</h1>
+
+      {/*Search Option */}
+      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+        <input
+          type="text"
+          placeholder="Search by name or type..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{
+            padding: "10px",
+            width: "300px",
+            fontSize: "16px",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+          }}
+        />
+      </div>
+
       <div
         style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
       >
-        {galaxies.map((galaxy, index) => (
+        {filteredGalaxies.map((galaxy, index) => (
           <GalaxyCard
             key={index}
             {...galaxy}
