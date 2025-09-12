@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles.css";
 
 interface GalaxyProps {
@@ -24,12 +24,32 @@ const GalaxyCard: React.FC<GalaxyProps> = ({
   const currentGalaxy = galaxies[currentIndex];
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % galaxies.length);
+    setCurrentIndex((prev: number) => (prev + 1) % galaxies.length);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + galaxies.length) % galaxies.length);
+    setCurrentIndex(
+      (prev: number) => (prev - 1 + galaxies.length) % galaxies.length
+    );
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        handleNext();
+      } else if (e.key === "ArrowLeft") {
+        handlePrev();
+      }
+    };
+
+    if (showModal) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [showModal]);
 
   return (
     <>
