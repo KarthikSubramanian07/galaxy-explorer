@@ -39,6 +39,8 @@ const GalaxyCard: React.FC<GalaxyProps> = ({
         handleNext();
       } else if (e.key === "ArrowLeft") {
         handlePrev();
+      } else if (e.key === "Escape") {
+        setShowModal(false);
       }
     };
 
