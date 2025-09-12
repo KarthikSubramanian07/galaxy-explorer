@@ -13,7 +13,7 @@ const GalaxyCard: React.FC<GalaxyProps> = ({ name, type, url, funFact }) => {
 
   return (
     <>
-      <div className="galaxy-card">
+      <div className="galaxy-card card">
         <img
           src={url}
           alt={name}
