@@ -21,7 +21,6 @@ const GalaxyCard: React.FC<GalaxyProps> = ({ name, type, url, funFact }) => {
           onClick={() => setShowModal(true)}
         />
         <h3>{name}</h3>
-        <p>Type: {type}</p>
       </div>
 
       {showModal && (
