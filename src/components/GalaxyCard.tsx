@@ -6,10 +6,30 @@ interface GalaxyProps {
   type: string;
   url: string;
   funFact?: string;
+  index?: number;
+  galaxies?: GalaxyProps[];
 }
 
-const GalaxyCard: React.FC<GalaxyProps> = ({ name, type, url, funFact }) => {
+const GalaxyCard: React.FC<GalaxyProps> = ({
+  name,
+  type,
+  url,
+  funFact,
+  index = 0,
+  galaxies = [],
+}) => {
   const [showModal, setShowModal] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(index);
+
+  const currentGalaxy = galaxies[currentIndex];
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % galaxies.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + galaxies.length) % galaxies.length);
+  };
 
   return (
     <>
@@ -18,7 +38,10 @@ const GalaxyCard: React.FC<GalaxyProps> = ({ name, type, url, funFact }) => {
           src={url}
           alt={name}
           className="thumbnail"
-          onClick={() => setShowModal(true)}
+          onClick={() => {
+            setCurrentIndex(index);
+            setShowModal(true);
+          }}
         />
         <h3>{name}</h3>
       </div>
@@ -26,14 +49,25 @@ const GalaxyCard: React.FC<GalaxyProps> = ({ name, type, url, funFact }) => {
       {showModal && (
         <div className="modal" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <img src={url} alt={name} className="modal-image" />
+            <button className="arrow left" onClick={handlePrev}>
+              &#8592;
+            </button>
+            <img
+              src={currentGalaxy.url}
+              alt={currentGalaxy.name}
+              className="modal-image"
+            />
+            <button className="arrow right" onClick={handleNext}>
+              &#8594;
+            </button>
             <div className="modal-info">
-              <h2>{name}</h2>
+              <h2>{currentGalaxy.name}</h2>
               <p>
-                <strong>Type:</strong> {type}
+                <strong>Type:</strong> {currentGalaxy.type}
               </p>
               <p>
-                <strong>Fun Fact:</strong> {funFact || "Test fun fact"}
+                <strong>Fun Fact:</strong>{" "}
+                {currentGalaxy.funFact || "Test fun fact"}
               </p>
             </div>
           </div>

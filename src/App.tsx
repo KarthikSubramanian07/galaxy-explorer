@@ -83,7 +83,12 @@ const App: React.FC = () => {
         style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
       >
         {galaxies.map((galaxy, index) => (
-          <GalaxyCard key={index} {...galaxy} />
+          <GalaxyCard
+            key={index}
+            {...galaxy}
+            index={index}
+            galaxies={galaxies}
+          />
         ))}
       </div>
     </div>
