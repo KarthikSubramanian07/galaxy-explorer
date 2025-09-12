@@ -58,7 +58,7 @@ const galaxies = [
 const App: React.FC = () => {
   return (
     <div>
-      <h1>Galaxy Explorer</h1>
+      <h1>Galaxy Explorer - Demo</h1>
       <div
         style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
       >

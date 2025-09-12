@@ -45,18 +45,28 @@
 }
 
 .modal-content {
-  width: 50vw;
-  max-height: 50vh;
+  display: flex;
+  width: 75vw;
+  max-height: 75vh;
   background-color: #000;
   border-radius: 8px;
   padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
 }
 
 .modal-image {
-  max-width: 100%;
-  max-height: 100%;
+  width: 60%;
+  height: auto;
   border-radius: 4px;
+  object-fit: contain;
+}
+
+.modal-info {
+  width: 40%;
+  padding: 20px;
+  color: #fff;
+  overflow-y: auto;
+  background: linear-gradient(135deg, #1e1e2f, #3a3a5f);
+  border-left: 2px solid #444;
+  border-radius: 0 8px 8px 0;
 }
