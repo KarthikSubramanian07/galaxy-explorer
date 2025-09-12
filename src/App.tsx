@@ -74,6 +74,48 @@ const galaxies = [
     funFact:
       "NGC 5866 is a lenticular galaxy viewed almost perfectly edge-on, revealing a striking and mysterious dust lane—unusual for its type—which suggests it still makes new stars at a slow pace, possibly due to past galactic collisions.",
   },
+  {
+    name: "Sombrero Galaxy (M104)",
+    type: "Spiral",
+    url: "https://cdn.esahubble.org/archives/images/screen/opo0328a.jpg",
+    funFact:
+      "The Sombrero Galaxy has a bright nucleus and a large central bulge, surrounded by a prominent dust lane that gives it the appearance of a sombrero hat.",
+  },
+  {
+    name: "Black Eye Galaxy (M64)",
+    type: "Spiral",
+    url: "https://cdn.esahubble.org/archives/images/screen/opo0404a.jpg",
+    funFact:
+      "M64 is known for its dark band of absorbing dust in front of the galaxy’s bright nucleus, giving it the nickname 'Black Eye'. Its inner and outer regions rotate in opposite directions.",
+  },
+  {
+    name: "2MASX J00482185-2507365 (Occulting Pair)",
+    type: "Interacting Spiral Pair",
+    url: "https://assets.science.nasa.gov/dynamicimage/assets/science/missions/hubble/releases/2008/09/STScI-01EVT683Z2ZN0WP76AA3HXVT0C.tif?w=975&h=958&fit=crop&crop=faces%2Cfocalpoint",
+    funFact:
+      "This overlapping pair of spiral galaxies reveals extended dusty arms far beyond the visible starry regions, offering insights into galactic dust distribution.",
+  },
+  {
+    name: "NGC 3370",
+    type: "Spiral",
+    url: "https://cdn.esahubble.org/archives/images/screen/potw1415a.jpg",
+    funFact:
+      "Located in Leo, NGC 3370 is used to study Cepheid variable stars, which help astronomers measure extragalactic distances with high precision.",
+  },
+  {
+    name: "Messier 81 (Bode’s Galaxy)",
+    type: "Spiral",
+    url: "https://cdn.esahubble.org/archives/images/screen/heic0710a.jpg",
+    funFact:
+      "M81 is one of the brightest galaxies in the night sky, located in Ursa Major, with sweeping spiral arms and a bright nucleus comparable to the Milky Way.",
+  },
+  {
+    name: "NGC 4826 (Evil Eye Galaxy)",
+    type: "Spiral",
+    url: "https://cdn.esahubble.org/archives/images/screen/potw2108a.jpg",
+    funFact:
+      "Also known as the Evil Eye Galaxy, NGC 4826 has a striking dark dust lane and counter-rotating gas layers, making it a favorite among amateur astronomers.",
+  },
 ];
 
 const App: React.FC = () => {
