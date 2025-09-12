@@ -118,8 +118,21 @@ const galaxies = [
   },
 ];
 
+const galaxyTypes = [
+  "Spiral",
+  "Barred Spiral",
+  "Distorted Spiral",
+  "Merging Galaxies",
+  "Dwarf Irregular",
+  "Lenticular",
+];
+
 const App: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
+
+  const handleTypeClick = (type: string) => {
+    setSearchTerm(type);
+  };
 
   const filteredGalaxies = galaxies.filter(
     (galaxy) =>
@@ -132,7 +145,16 @@ const App: React.FC = () => {
       <h1>Galaxy Explorer</h1>
 
       {/*Search Option */}
-      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: "20px",
+          gap: "20px",
+          flexWrap: "wrap",
+        }}
+      >
         <input
           type="text"
           placeholder="Search by name or type..."
@@ -143,9 +165,32 @@ const App: React.FC = () => {
             width: "300px",
             fontSize: "16px",
             borderRadius: "8px",
+            marginTop: "10px",
             border: "1px solid #ccc",
           }}
         />
+
+        <div style={{ marginTop: "10px" }}>
+          {galaxyTypes.map((type) => (
+            <a
+              key={type}
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                handleTypeClick(type);
+              }}
+              style={{
+                margin: "0 10px",
+                color: "#6dd5fa",
+                textDecoration: "underline",
+                cursor: "pointer",
+                fontSize: "14px",
+              }}
+            >
+              {type}
+            </a>
+          ))}
+        </div>
       </div>
 
       <div
