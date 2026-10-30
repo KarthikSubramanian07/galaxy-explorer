@@ -1,48 +1,31 @@
 {
-  "name": "react-typescript",
+  "name": "galaxy-explorer",
   "version": "1.0.0",
-  "description": "React and TypeScript example starter project",
+  "description": "Browse galaxies as cards: a small React and TypeScript app built with Vite.",
   "keywords": [
-    "typescript",
     "react",
-    "starter"
+    "typescript",
+    "vite",
+    "astronomy"
   ],
-  "main": "src/index.tsx",
   "dependencies": {
-    "loader-utils": "3.2.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-scripts": "5.0.1"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@types/react": "18.2.38",
     "@types/react-dom": "18.2.15",
-    "typescript": "4.4.4"
+    "@vitejs/plugin-react": "^6.1.2",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "resolutions": {
-    "@svgr/webpack": "^8.1.0",
-    "@tootallnate/once": "^2.0.1",
-    "body-parser": "^1.20.9",
-    "nth-check": "^2.1.1",
-    "path-to-regexp": "~0.1.13",
-    "postcss": "^8.5.23",
-    "postcss-svgo/svgo": "^2.8.4",
-    "qs": "^6.16.1",
-    "resolve-url-loader": "^5.0.0",
-    "serialize-javascript": "^7.1.3",
-    "underscore": "^1.13.8",
-    "uuid": "^11.1.1"
-  }
+  "private": true,
+  "type": "module"
 }
