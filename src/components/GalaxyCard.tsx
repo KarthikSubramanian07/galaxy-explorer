@@ -126,7 +126,7 @@ const GalaxyCard: React.FC<GalaxyProps> = ({
           ref={openButtonRef}
           onClick={openModal}
           aria-haspopup="dialog"
-          aria-label={`Open details for ${name}`}
+          aria-label={`${name} ${type}. Open details.`}
         >
           <img src={url} alt="" className="thumbnail" />
           <span className="galaxy-open-label">
