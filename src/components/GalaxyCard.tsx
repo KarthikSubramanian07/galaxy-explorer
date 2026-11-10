@@ -164,9 +164,9 @@ const GalaxyCard: React.FC<GalaxyProps> = ({
               type="button"
               className="arrow left"
               onClick={handlePrev}
-              aria-label="Previous galaxy"
             >
               <span aria-hidden="true">&#8592;</span>
+              <span className="visually-hidden">Previous galaxy</span>
             </button>
             <figure className="modal-media">
               <img
@@ -179,9 +179,9 @@ const GalaxyCard: React.FC<GalaxyProps> = ({
               type="button"
               className="arrow right"
               onClick={handleNext}
-              aria-label="Next galaxy"
             >
               <span aria-hidden="true">&#8594;</span>
+              <span className="visually-hidden">Next galaxy</span>
             </button>
             <div className="modal-info" tabIndex={0}>
               <h2 id={titleId}>{currentGalaxy.name}</h2>

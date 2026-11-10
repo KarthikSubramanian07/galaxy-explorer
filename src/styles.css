@@ -74,6 +74,15 @@ input:focus-visible,
 .app-header {
   text-align: center;
   padding: 24px 16px 8px;
+  background-color: rgba(11, 12, 42, 0.92);
+}
+
+.app-header h1,
+.app-tagline,
+.search-label,
+.result-status,
+.empty-state {
+  background-color: transparent;
 }
 
 h1 {
@@ -98,7 +107,8 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding: 8px 16px 0;
+  padding: 8px 16px 16px;
+  background-color: rgba(11, 12, 42, 0.92);
 }
 
 .search-row {
@@ -185,7 +195,9 @@ button:hover {
 .result-status {
   text-align: center;
   color: var(--text-muted);
-  margin: 18px 16px 8px;
+  margin: 0;
+  padding: 18px 16px 8px;
+  background-color: rgba(11, 12, 42, 0.92);
 }
 
 .empty-state {
@@ -338,7 +350,7 @@ button:hover {
   color: var(--text);
   overflow-y: auto;
   max-height: min(70vh, 560px);
-  background: linear-gradient(135deg, #1e1e2f, #2f3152);
+  background-color: #252844;
   border: 1px solid #5b6288;
   border-radius: 8px;
 }
