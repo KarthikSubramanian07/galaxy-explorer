@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useId, useMemo, useState } from "react";
 
 import GalaxyCard from "./components/GalaxyCard";
 import "./styles.css";
@@ -129,83 +129,139 @@ const galaxyTypes = [
 
 const App: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const searchId = useId();
+  const resultsId = useId();
 
-  const handleTypeClick = (type: string) => {
-    setSearchTerm(type);
-  };
+  const filteredGalaxies = useMemo(
+    () =>
+      galaxies.filter(
+        (galaxy) =>
+          galaxy.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          galaxy.type.toLowerCase().includes(searchTerm.toLowerCase())
+      ),
+    [searchTerm]
+  );
 
-  const filteredGalaxies = galaxies.filter(
-    (galaxy) =>
-      galaxy.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      galaxy.type.toLowerCase().includes(searchTerm.toLowerCase())
+  const resultStatus =
+    searchTerm.trim().length === 0
+      ? `Showing all ${filteredGalaxies.length} galaxies.`
+      : filteredGalaxies.length === 0
+        ? `No galaxies match “${searchTerm.trim()}”.`
+        : `Showing ${filteredGalaxies.length} ${
+            filteredGalaxies.length === 1 ? "galaxy" : "galaxies"
+          } matching “${searchTerm.trim()}”.`;
+
+  const activeType = galaxyTypes.find(
+    (type) => type.toLowerCase() === searchTerm.trim().toLowerCase()
   );
 
   return (
-    <div>
-      <h1>Galaxy Explorer</h1>
+    <>
+      <a className="skip-link" href="#main-content">
+        Skip to galaxy list
+      </a>
+      <header className="app-header">
+        <h1>Galaxy Explorer</h1>
+        <p className="app-tagline">
+          Browse famous galaxies and filter them by name or type.
+        </p>
+      </header>
 
-      {/*Search Option */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginBottom: "20px",
-          gap: "20px",
-          flexWrap: "wrap",
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Search by name or type..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          style={{
-            padding: "10px",
-            width: "300px",
-            fontSize: "16px",
-            borderRadius: "8px",
-            marginTop: "10px",
-            border: "1px solid #ccc",
-          }}
-        />
+      <main id="main-content" tabIndex={-1}>
+        <section
+          className="search-panel"
+          aria-labelledby="search-heading"
+        >
+          <h2 id="search-heading" className="visually-hidden">
+            Search and filter
+          </h2>
+          <div className="search-row">
+            <label className="search-label" htmlFor={searchId}>
+              Search by name or type
+            </label>
+            <input
+              id={searchId}
+              type="search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="e.g. Spiral or Sombrero"
+              autoComplete="off"
+              aria-controls={resultsId}
+              aria-describedby="search-hint"
+            />
+            <p id="search-hint" className="visually-hidden">
+              Results update as you type. Use the type filters to jump to a
+              galaxy type.
+            </p>
+            {searchTerm ? (
+              <button
+                type="button"
+                className="clear-search"
+                onClick={() => setSearchTerm("")}
+              >
+                Clear search
+              </button>
+            ) : null}
+          </div>
 
-        <div style={{ marginTop: "10px" }}>
-          {galaxyTypes.map((type) => (
-            <a
-              key={type}
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                handleTypeClick(type);
-              }}
-              style={{
-                margin: "0 10px",
-                color: "#6dd5fa",
-                textDecoration: "underline",
-                cursor: "pointer",
-                fontSize: "14px",
-              }}
-            >
-              {type}
-            </a>
-          ))}
-        </div>
-      </div>
+          <div
+            className="type-filters"
+            role="group"
+            aria-label="Filter by galaxy type"
+          >
+            {galaxyTypes.map((type) => {
+              const pressed = activeType === type;
+              return (
+                <button
+                  key={type}
+                  type="button"
+                  className={
+                    pressed ? "type-filter is-active" : "type-filter"
+                  }
+                  aria-pressed={pressed}
+                  onClick={() => setSearchTerm(type)}
+                >
+                  {type}
+                </button>
+              );
+            })}
+          </div>
+        </section>
 
-      <div
-        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
-      >
-        {filteredGalaxies.map((galaxy, index) => (
-          <GalaxyCard
-            key={index}
-            {...galaxy}
-            index={index}
-            galaxies={galaxies}
-          />
-        ))}
-      </div>
-    </div>
+        <p className="result-status" aria-live="polite" id={resultsId}>
+          {resultStatus}
+        </p>
+
+        <section aria-labelledby="gallery-heading">
+          <h2 id="gallery-heading" className="visually-hidden">
+            Galaxy gallery
+          </h2>
+          {filteredGalaxies.length === 0 ? (
+            <p className="empty-state" role="status">
+              No galaxies match your search. Try another name or clear the
+              filter.
+            </p>
+          ) : (
+            <ul className="galaxy-grid">
+              {filteredGalaxies.map((galaxy) => {
+                const fullIndex = galaxies.findIndex(
+                  (item) => item.name === galaxy.name
+                );
+                return (
+                  <li key={galaxy.name} className="galaxy-grid-item">
+                    <GalaxyCard
+                      {...galaxy}
+                      index={fullIndex}
+                      galaxies={galaxies}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+      </main>
+    </>
   );
 };
 
