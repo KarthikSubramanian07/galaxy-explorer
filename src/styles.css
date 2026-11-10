@@ -74,15 +74,7 @@ input:focus-visible,
 .app-header {
   text-align: center;
   padding: 24px 16px 8px;
-  background-color: rgba(11, 12, 42, 0.92);
-}
-
-.app-header h1,
-.app-tagline,
-.search-label,
-.result-status,
-.empty-state {
-  background-color: transparent;
+  background-color: #0b0c2a;
 }
 
 h1 {
@@ -108,7 +100,7 @@ main {
   align-items: center;
   gap: 16px;
   padding: 8px 16px 16px;
-  background-color: rgba(11, 12, 42, 0.92);
+  background-color: #0b0c2a;
 }
 
 .search-row {
@@ -197,7 +189,7 @@ button:hover {
   color: var(--text-muted);
   margin: 0;
   padding: 18px 16px 8px;
-  background-color: rgba(11, 12, 42, 0.92);
+  background-color: #0b0c2a;
 }
 
 .empty-state {
